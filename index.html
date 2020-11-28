@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="video.css">
+    <script src="AJAX.js"></script>
+</head>
+<body>
+    <div class="videoList">
+        <!-- <div class="videoItem">
+            <div class="videohead">
+                <div class="videoImg" style="background-image: url(http://wimg.spriteapp.cn/picture/2020/1015/388a5358-0eaf-11eb-a0f2-1866daeb0df0_wpd.jpg);"></div>
+                <button></button>
+                <h3 class="title">以为是青铜…………</h3>
+                <p ><span class="eyeicon"></span><span class="num">10</span>播放量</p>
+            </div>
+            <div class="videoFool">
+                <img src="http://wimg.spriteapp.cn/profile/large/2019/12/24/5e01929eac7e9_mini.jpg" alt="">
+                <div class="right">
+                    <div class="auctor">布丁</div>
+                    <div class="comment">叫什么名字？哪里买的？我要买给我闺女</div>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
+
+    <div class="updata">刷新</div>
+
+    <div class="playPage">
+        <video class="playPay" controls='controls' src=""></video>
+        <div class="close" id="clo"></div>
+    </div>
+
+    <script>
+        let videoListDom = document.querySelector('.videoList');
+        let playPageDom = document.querySelector('.playPage');
+        let playPayDom = document.querySelector('.playPage .playPay');
+        let closeDom = document.querySelector('.close');
+        let updataDom = document.querySelector('.updata');
+        let videoList = [];
+
+        let http = 'https://api.apiopen.top/getJoke';
+        let data = {
+            page:1,
+            count:10,
+            type:'video'
+        };
+        let fn = function(xhr){
+            let rel = JSON.parse(xhr.response);
+
+            videoList = rel.result;
+            videoListCycle(videoList);
+        }
+        getajaxest( 'https://api.apiopen.top/getJoke', data, fn );
+
+        function videoListCycle(videoList){
+
+            videoList.forEach((item, index) => {
+                let videoItem = document.createElement('div');
+                videoItem.className = 'videoItem';
+
+                videoItem.innerHTML = `
+                <div class="videohead">
+                    <div class="videoImg" style="background-image: url(${item.thumbnail});"></div>
+                    <button data-index='${index}'></button>
+                    <h3 class="title">${item.text}</h3>
+                    <p ><span class="eyeicon"></span><span class="num">${item.up}</span>播放量</p>
+                </div>
+                <div class="videoFool">
+                    <img src="${item.header}" alt="">
+                    <div class="right">
+                        <div class="auctor">${item.name}</div>
+                        <div class="comment">${item.top_comments_content}</div>
+                    </div>
+                </div>
+                `
+                videoListDom.appendChild(videoItem);
+
+            });
+        }
+
+        videoListDom.addEventListener('click', function(e){
+            if(e.target.tagName == 'BUTTON'){
+                let num = e.target.dataset.index;
+                playPayDom.src = videoList[num].video;
+                playPageDom.style.display = 'block';
+                playPayDom.play();
+                // console.log(e.path[0].id);
+            }         
+        })
+
+        closeDom.addEventListener('click', function(){
+            playPageDom.style.display = 'none';
+            playPayDom.pause();
+        })
+        
+        updataDom.addEventListener('click', function(){
+            data.page += 1;
+            videoListDom.innerHTML = '';
+            getajaxest( 'https://api.apiopen.top/getJoke', data, fn );
+        })
+    </script>
+</body>
+</html>

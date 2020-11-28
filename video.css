@@ -1,0 +1,145 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.videoList{
+    width: 100vw;
+}
+
+.videoItem{
+    width: 100vw;
+}
+
+.videoItem .videoImg{
+    width: 100vw;
+    height: 75vw;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000;
+}
+
+.videoItem .videohead{
+    width: 100vw;
+    height: 75vw;
+    position: relative;
+}
+
+.videoItem .videohead .title{
+    top: 0;
+    left: 0;
+    padding: 15px;
+    font-size: 20px;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    justify-content: center;
+}
+
+.videoItem .videohead button{
+    width: 100vw;
+    height: 75vw;
+    position: absolute;
+    background-image: url('img/begin.png');
+    background-color: rgba(0, 0, 0, 0.4);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    top: 0;
+    left: 0;
+}
+
+.videoItem .videohead p .eyeicon{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url('img/eye2.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.videoItem .videohead p{
+    position: absolute;
+    width: 100vw;
+    height: 25px;
+    bottom: 0;
+    left: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    line-height: 25px;
+    padding: 0px 10px; 
+}
+
+.videoItem .videoFool{
+    display: flex;
+    width: 100vw;
+    height: 70px;
+}
+
+.videoItem .videoFool img{
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    padding: 10px;
+}
+
+.videoItem .videoFool .right{
+    height: 70px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    justify-content: center;
+}
+
+.videoItem .videoFool .right .auctor{
+    font-size: 20px;
+}
+
+.videoItem .videoFool .right .comment{
+    font-size: 15px;
+    color: #999;
+}
+
+.playPage{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.playPage .playPay{
+    width: 100vw;
+    height: 100vh;
+}
+
+.playPage .close{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-image: url(img/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.updata{
+    height: 50px;
+    width: 100vw;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    background-color: rgba(206, 206, 206, 0.7);
+    color: #999;
+}
